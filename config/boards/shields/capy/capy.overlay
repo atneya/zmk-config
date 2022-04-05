@@ -1,0 +1,61 @@
+/*
+ * Copyright (c) 2022 Atneya Nair
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+
+/ {
+	chosen {
+		zmk,kscan = &kscan0;
+	};
+
+	kscan0: kscan {
+		compatible = "zmk,kscan-gpio-matrix";
+		label = "KSCAN";
+		diode-direction = "col2row";
+		
+		row-gpios
+                        = <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+                        , <&gpio0 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+                        , <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+                        , <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+                        , <&gpio1 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+                        ;
+               
+		col-gpios
+                        = <&gpio1 7 GPIO_ACTIVE_HIGH>
+                        , <&gpio1 2 GPIO_ACTIVE_HIGH>
+                        , <&gpio1 1 GPIO_ACTIVE_HIGH>
+                        , <&gpio1 6 GPIO_ACTIVE_HIGH>
+                        , <&gpio1 4 GPIO_ACTIVE_HIGH>
+                        , <&gpio0 11 GPIO_ACTIVE_HIGH>
+                        , <&gpio1 0 GPIO_ACTIVE_HIGH>
+                        , <&gpio0 24 GPIO_ACTIVE_HIGH>
+                        , <&gpio0 22 GPIO_ACTIVE_HIGH>
+                        , <&gpio0 20 GPIO_ACTIVE_HIGH>
+                        , <&gpio0 17 GPIO_ACTIVE_HIGH>
+                        , <&gpio0 2 GPIO_ACTIVE_HIGH>
+                        , <&gpio0 29 GPIO_ACTIVE_HIGH>
+                        , <&gpio0 31 GPIO_ACTIVE_HIGH>
+                        ;	
+	};
+};
+
+&pro_micro_i2c {
+	status = "okay";
+
+	oled: ssd1306@3c {
+		compatible = "solomon,ssd1306fb";
+		reg = <0x3c>;
+		label = "DISPLAY";
+		width = <128>;
+		height = <32>;
+		segment-offset = <0>;
+		page-offset = <0>;
+		display-offset = <0>;
+		multiplex-ratio = <31>;
+		com-sequential;
+		prechargep = <0x22>;
+	};
+};
