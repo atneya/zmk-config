@@ -43,6 +43,10 @@
 	};
 };
 
+/ {
+   ext-power { init-delay-ms = <200>; };
+};
+
 &pro_micro_i2c {
 	status = "okay";
 
