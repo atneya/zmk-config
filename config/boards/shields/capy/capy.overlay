@@ -43,6 +43,10 @@
 	};
 };
 
+/ {
+   ext-power { init-delay-ms = <200>; };
+};
+
 &i2c0 {
 	status = "okay";
 	sda-pin = <6>;
